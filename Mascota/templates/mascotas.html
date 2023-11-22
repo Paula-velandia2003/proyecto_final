@@ -1,0 +1,57 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<form method="GET">
+    <div class="input-group">
+        <input type="text" class="form-control bg-light border-0 small" placeholder="Buscar..." name="buscar" value="{{request.GET.buscar}}">
+        <div class="input-group-append">
+            <button class="btn btn-primary" type="submit">
+                <i class="fas fa-search fa-sm">buscar</i>
+            </button>
+        </div>
+    </div>
+</form>
+
+<main class="container">
+    <div class="row">
+        <div class="col-sm-12 col-md-6 col-lg-8 col-xl-8 offset-md-2 md-5" >
+            <h2 class="text-center py-3">Listado de Mascotas</h2>
+            <div class="tebla-responsive py-2">
+                <table class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th>#</th>
+                            <th>Nombre</th>
+                            <th>Especie</th>
+                            <th>Edad</th>
+                            <th>Fecha de Ingreso</th>
+                            <th>Usuario</th>
+                            <th colspan="2">opciones</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for mascota in mascotas %}
+        
+                            <tr>
+                                <td>{{mascota.id}}</td>
+                                <td>{{ mascota.nombre }}</td>
+                                <td>{{ mascota.especie }}</td>
+                                <td>{{mascota.edad}}</td>
+                                <td>{{mascota.fechaIngreso}}</td>
+                                <td>{{ mascota.user.username }}</td>
+                                <td><a href={% url 'mascota_detail' mascota.id %} class="btn btn-warning bi-pencil">Detalles</a></td>
+                            </tr>
+        
+                        {% endfor%}
+        
+                    </tbody>
+                </table>
+        
+            </div>
+        </div>
+    </div>
+    
+</main>
+{% endblock %}
+

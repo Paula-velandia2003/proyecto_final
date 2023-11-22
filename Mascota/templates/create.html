@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<main class="container">
+    <div class="row">
+        <div class="col-md-4 offset-md-4 mt-7">
+            <h1>Crear Registro</h1>
+
+            {{ error }}
+
+            <form action="{% url 'create_mascotas' %}" method="POST" class="card card-body">
+                {% csrf_token %}
+                {{ form }}
+
+                <button type="submit" class="btn btn-primary">
+                    Guardar
+                </button>
+            </form>
+        </div>
+    </div>
+</main>
+{% endblock %}
